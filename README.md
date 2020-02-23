@@ -1,2 +1,2 @@
 # talkbox
-playground for Web Speech API
+Playground for Web Speech API

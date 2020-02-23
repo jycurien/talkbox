@@ -1,0 +1,40 @@
+html {
+	box-sizing: border-box;
+	font-size: 100%;
+}
+*, *:before, *:after { 
+	box-sizing: inherit;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #13414F;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    border: none;
+    background-color: #13414F;
+    color: rgba(248, 243, 225, 0.897);
+    padding: 20px;
+    font-size: 18px;
+}
+
+textarea {
+    border: none;
+    background-color: rgb(247, 245, 245);
+    width: 60%;
+    height: 50%;
+    min-width: 400px;
+    min-height: 300px;
+    padding: 20px;
+    margin-bottom: 20px;
+}

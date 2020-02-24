@@ -1,10 +1,13 @@
 window.addEventListener('DOMContentLoaded', () => {
 
     const utterThis = new SpeechSynthesisUtterance();
-    utterThis.pitch = 2;
-    utterThis.rate = 1.2;
+    // DOM Elements
     const speakButton = document.querySelector('#speak_button');
     const messageInput = document.querySelector('#message_input');
+    const pitchInput = document.querySelector('#pitch_input');
+    const rateInput = document.querySelector('#rate_input');
+    const rangeInputs =document.querySelectorAll('.range_input');
+    
     let texts = [
         'Mais t\'es malade',
         'On est pas mal là'
@@ -14,6 +17,12 @@ window.addEventListener('DOMContentLoaded', () => {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
+    rangeInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            this.parentNode.querySelector('span').textContent = parseFloat(this.value).toFixed(2);   
+        });        
+    });
+
     speakButton.addEventListener('click', () => {
         let message;
         if ('' !== messageInput.value) {
@@ -22,7 +31,9 @@ window.addEventListener('DOMContentLoaded', () => {
             message = getRandomElt(texts);   
         }
         utterThis.text = message;
-        speechSynthesis.speak(utterThis);
+        utterThis.pitch = pitchInput.value;
+        utterThis.rate = rateInput.value;
+        window.speechSynthesis.speak(utterThis);
     });
     
 });

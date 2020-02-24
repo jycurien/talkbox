@@ -1,7 +1,21 @@
-window.addEventListener('DOMContentLoaded', () => {
+function loadSelectVoices(voices, voiceSelect) {
+    voices.forEach((voice, index) => {
+        const optionElt = document.createElement('option');  
+        optionElt.value = index;  
+        optionElt.textContent = voice.name;
+        voiceSelect.appendChild(optionElt);
+    });
+}
 
+function getRandomElt(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+window.addEventListener('DOMContentLoaded', () => {
     const utterThis = new SpeechSynthesisUtterance();
-    // DOM Elements
+    let voices = window.speechSynthesis.getVoices();
+    
+    const voiceSelect = document.querySelector('#voice_select');
     const speakButton = document.querySelector('#speak_button');
     const messageInput = document.querySelector('#message_input');
     const pitchInput = document.querySelector('#pitch_input');
@@ -13,8 +27,15 @@ window.addEventListener('DOMContentLoaded', () => {
         'On est pas mal là'
     ];
 
-    function getRandomElt(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
+    if (Array.isArray(voices) && 0 < voices.length) { // Firefox
+        loadSelectVoices(voices, voiceSelect);
+    } else { // Chrome
+        window.speechSynthesis.addEventListener('voiceschanged', () => {
+            if (Array.isArray(voices) && 0 === voices.length) {    
+                voices = window.speechSynthesis.getVoices();
+                loadSelectVoices(voices, voiceSelect);  
+            } 
+        });
     }
 
     rangeInputs.forEach(input => {
@@ -33,8 +54,8 @@ window.addEventListener('DOMContentLoaded', () => {
         utterThis.text = message;
         utterThis.pitch = pitchInput.value;
         utterThis.rate = rateInput.value;
+        utterThis.voice = voices[voiceSelect.value];
         window.speechSynthesis.speak(utterThis);
     });
     
 });
-

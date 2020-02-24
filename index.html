@@ -7,20 +7,28 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <main class="flex">
-    	<div>
-    		<div class="flex">
-    			<label for="pitch_input">Pitch</label>
-	    		<input type="range" min="0" max="2" step="0.1" value ="2" id="pitch_input" class="range_input">
-	    		<span>2.00</span>	
-    		</div>
-    		<div class="flex">
-    			<label for="rate_input">Rate</label>
-	    		<input type="range" min="0" max="10" step="0.1" value ="1.2" id="rate_input" class="range_input">
-	    		<span>1.20</span>	
-    		</div>
+    <main class="flex-column justify-content-center align-items-center">
+    	<h1>Talk Box</h1>
+    	<div class="flex-row align-items-center mbs">
+    		<div class="mrs">
+	    		<label for="voice_select">Voice</label>
+	    		<select name="voice_select" id="voice_select"></select>
+	    	</div>
+	    	<div class="mls">
+	    		<div class="flex-row">
+	    			<label for="pitch_input">Pitch</label>
+		    		<input type="range" min="0" max="2" step="0.1" value ="2" id="pitch_input" class="range_input">
+		    		<span>2.00</span>	
+	    		</div>
+	    		<div class="flex-row">
+	    			<label for="rate_input">Rate</label>
+		    		<input type="range" min="0" max="10" step="0.1" value ="1.2" id="rate_input" class="range_input">
+		    		<span>1.20</span>	
+	    		</div>
+	    	</div>
     	</div>
-        <textarea type="text" id="message_input"></textarea>
+    	
+        <textarea class="mbs" type="text" id="message_input"></textarea>
         <button id="speak_button">Make Me Speak</button>
     </main>
     <script type="text/javascript" src="js/app.js"></script>   
